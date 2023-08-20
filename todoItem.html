@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+  
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    <body>
+        <button class="btn btn-danger" style='position: absolute;top:5px ;right: 5px;' onclick="LogOut()">Log-Out</button>
+
+        <div class="app-container" id="taskList">
+            <h1 class="app-header">My TO DO LIST NAME</h1>
+            <div class="add-task">
+                
+              <input id="SubItemText"  type="text" autocomplete="off" placeholder="Enter Item Name" class="task-input">
+        
+            </div>  
+           
+            <div class="add-task" style="float: right;margin-top: 10px;">
+                <input type="submit" value="" class="submit-task" onclick="AddSubItem()" title="Add Task">
+               
+            </div>
+            <div style="margin-top: 5rem;">
+                 <!-- Modal -->
+                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="background-color:#10101d;">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel" style="color:#fff">Edit Text</h4>
+                
+                            </div>
+                            <div class="modal-body">
+                                <label for="NewText" style="color:#fff">Enter Text</label>
+                                <input id="NewText" class="form-control" style="width: 90%; margin: 1rem;" placeholder="Enter.." type="text">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn" style="background: #ee9ca7" onclick="saveEdit()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <ul id="itemList">
+                    
+    
+                </ul>
+            </div>
+
+
+        </div>
+
+        <script>
+                    window.onload = function() {
+ 
+ var receivedData = localStorage.getItem('token');
+ console.log("receevw",receivedData);
+ GetSubItem(receivedData)
+}
+
+        </script>
+            
+
+    </body>
+
+</html>

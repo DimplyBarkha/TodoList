@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    <body>
+
+        <section>
+            <div class="main-form-container">
+              <div id="form_section" class="form-container">
+                <div class="login-form form-wraper ">
+                  <div>
+                    <div class="form-title">
+                      <h2>Login</h2>
+                    </div>
+                    <div class="input-group">
+                      <div class="box">
+                        <span>
+                          <input placeholder="Email" class="myInput" id="email" type="text" />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <div class="box">
+                        <span>
+                          <input placeholder="Password" class="myInput" id="password" type="text" />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="action-button">
+                      <button type="button" id="login" onclick="loginFrm()">Login</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="signUp-form form-wraper">
+                  <div>
+                    <div class="form-title">
+                      <h2>Sign Up</h2>
+                    </div>
+                    <div class="input-group">
+                      <div class="box">
+                        <span>
+                          <input id="emailId" placeholder="Email" class="myInput"  type="email" />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <div class="box">
+                        <span>
+                          <input id="passwordNew"  placeholder="Password" class="myInput" type="text" />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="action-button">
+                      <button type="button" onclick="signUpToDo()">Sign Up</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="multiple-btn" class="bg-btn-container">
+                <div class="action-button">
+                  <button>Login</button>
+                </div>
+                <div class="action-button">
+                  <button>Sign Up</button>
+                </div>
+              </div>
+          
+            </div>
+          </section>
+    </body>
+
+    <script>
+      const inputs = document.querySelectorAll("input"); 
+        inputs.forEach(function (input) {
+          input.addEventListener("focus", function () {
+            const parentElement = input.parentElement.parentElement;
+            parentElement.classList.add("box-animation");
+          });
+          input.addEventListener("blur", function () {
+            const parentElement = input.parentElement.parentElement;
+            parentElement.classList.remove("box-animation");
+          });
+        });
+
+        const buttons = document.querySelectorAll("#multiple-btn button");
+        const form_container = document.getElementById('form_section')
+        buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+        form_container.classList.toggle("left-right");
+
+        });
+      });
+
+
+      
+function signUpToDo(){ 
+
+var email_id = document.getElementById('emailId').value;
+var passwordG = document.getElementById('passwordNew').value;
+
+console.log(email_id);
+console.log(passwordG);
+
+    fetch('http://todo-api.aavaz.biz/signup', {
+    method: 'POST',  
+    headers: {
+    "Content-Type": "application/json ",
+    "Accept": "*/*"
+    },
+    body: JSON.stringify({ 
+      email: email_id,
+      password: passwordG
+      })
+    }) .then(response => {
+    
+        alert("Signup Successful!");
+  
+    })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+  var username = document.getElementById('emailId');
+  username.value='';
+  var password = document.getElementById('passwordNew');
+  password.value='';
+  
+}
+
+    </script>
+</html>
